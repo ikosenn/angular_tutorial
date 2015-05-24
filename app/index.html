@@ -4,7 +4,7 @@
     <meta charset = 'utf-8'>
     <title>Google Phone Gallery</title>
     <link rel = 'stylesheet' href = 'bower_components/bootstrap/dist/css/bootstrap.css'>
-    <link rel = 'stylesheet' href = 'css.app.css'>
+    <link rel = 'stylesheet' href = 'app.css'>
     <script src = 'bower_components/angular/angular.js'></script>
     <script type="text/javascript" src = "js/controllers.js"></script>
 </head>
@@ -27,8 +27,9 @@
 
             <div class = "col-md-10">
                 <ul class = "phones">
-                    <li ng-repeat = 'phone in phones|filter:query|orderBy:orderProp'>
-                        <span>{{phone.name}}</span>
+                    <li ng-repeat = 'phone in phones|filter:query|orderBy:orderProp' class ="thumbnail">
+                        <a href="#/phones/{{phone.id}}" class ="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+                        <a href="#/phones/{{phone.id}}" class ="thumb">{{phone.name}}</a>
                         <p>{{phone.snippet}}</p>
 
                     </li>
