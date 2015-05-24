@@ -1,6 +1,7 @@
 'use strict';
 
 describe('PhoneCat controllers', function(){
+    beforeEach(module('PhonecatApp'));
     describe('PhoneListCtrl', function(){
         var scope, ctrl, $httpBackend;
         beforeEach(module('PhonecatApp'));
