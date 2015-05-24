@@ -1,9 +1,16 @@
 'use strict';
 
 describe('PhoneCat App', function(){
+
+  it('should redirect index.html to index.html#/phones',function(){
+    browser.get('app/index.html');
+    browser.getLocationAbsUrl().then(function(url){
+      expect(url.split('#')[1]).toBe('/phones');
+    });
+  });
   describe('Phone list view', function(){
         beforeEach(function(){
-          browser.get('app/index.html');
+          browser.get('app/index.html#/phones');
         });
 
         it('should filter the phone list as a user types into the search box',function(){
@@ -29,13 +36,13 @@ describe('PhoneCat App', function(){
             });
           }
           query.sendKeys('tablet');
-          except(getNames()).toEqual([
+          expect(getNames()).toEqual([
               "Motorola XOOM\u2122 with Wi-Fi",
               "MOTOROLA XOOM\u2122"
             ]);
           element(by.model('orderProp')).element(by.css('option[value="name"]')).click();
 
-          except(getNames()).toEqual([
+          expect(getNames()).toEqual([
 
               "MOTOROLA XOOM\u2122",
               "Motorola XOOM\u2122 with Wi-Fi"
@@ -47,10 +54,18 @@ describe('PhoneCat App', function(){
           query.sendKeys('nexus');
           element(by.css('.phones li a')).click();
           browser.getLocationAbsUrl().then(function(url){
-            except(url.split('#')[1].toBe('/phones/nexus-s'));
+            expect(url.split('#')[1].toBe('/phones/nexus-s'));
           });
         });
 
+  });
+  describe('Phone detail view',function(){
+    beforeEach(function(){
+      browser.get('app/index.html#/phones/nexus-s');
+    });
+    it('should display placeholder page with phoneId', function(){
+      expect(element(by.binding('phoneId')).getText()).toBe('nexus-s');
+    });
   });
 });
 

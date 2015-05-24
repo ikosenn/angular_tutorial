@@ -20,6 +20,13 @@ describe('PhoneCat controllers', function(){
             except(scope.phones).toEqual([{name:'Nexus S'},
                                             {name:'Motorola DROID'}]);
         });
+        it('should set the default value of orderProp model', function(){
+            except(scope.orderProp).toBe('age');
+        });
+
+        describe('PhoneDetailCtrl',function(){
+
+        });
     });
 });
 
